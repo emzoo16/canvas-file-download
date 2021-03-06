@@ -1,14 +1,14 @@
-from values import *
+from canvasdownload import values
 from colorama import Style, Fore
-from PyInquirer import Separator
-import canvasUtils
-import fileUtils
+from PyInquirer import Separator, prompt
+from canvasdownload import canvasUtils
+from canvasdownload import fileUtils
 import os
 
 
 def download_files(args):
     course_string_list = []
-    user_config = fileUtils.load_config(config_path)
+    user_config = fileUtils.load_config(values.config_path)
 
     available_courses = canvasUtils.get_available_courses_for_user(selected_only=True)
     for (course_name, course) in available_courses.items():
@@ -27,7 +27,7 @@ def download_files(args):
         }
     ]
 
-    answer = prompt(questions, style=style)
+    answer = prompt(questions, style=values.style)
     selected_course = available_courses[answer["course"]]
 
     download_directory = user_config["directory"] + "/" + answer["course"]
@@ -72,7 +72,7 @@ def download_files(args):
             }
         ]
 
-        answers = prompt(questions, style=style)
+        answers = prompt(questions, style=values.style)
         selected_files = answers["files"]
 
         for file in selected_files:

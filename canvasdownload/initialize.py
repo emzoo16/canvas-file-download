@@ -1,9 +1,9 @@
 from PyInquirer import prompt
 import os
 from colorama import Fore, Style
-import fileUtils
-import canvasUtils
-from values import *
+from canvasdownload import fileUtils
+from canvasdownload import canvasUtils
+from canvasdownload import values
 
 
 def initialize(args):
@@ -35,7 +35,7 @@ def initialize(args):
         },
     ]
 
-    answers = prompt(questions, style=style)
+    answers = prompt(questions, style=values.style)
     user_course_names = answers["courses"]
     user_course_ids = canvasUtils.get_course_ids_from_names(
         user_course_names, available_courses
@@ -47,11 +47,11 @@ def initialize(args):
 
     data = {"courses": user_course_ids, "directory": user_directory}
 
-    fileUtils.save_to_config(data, config_path)
+    fileUtils.save_to_config(data, values.config_path)
 
     print(
         Fore.GREEN
         + "config file successfully initialized at "
-        + config_path
+        + values.config_path
         + Style.RESET_ALL
     )

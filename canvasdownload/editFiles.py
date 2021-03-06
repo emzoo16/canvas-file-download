@@ -1,12 +1,12 @@
-import fileUtils
-import canvasUtils
+from canvasdownload import fileUtils
+from canvasdownload import canvasUtils
 from canvasapi import Canvas
 from PyInquirer import prompt, style_from_dict, Token
-from values import *
+from canvasdownload import values
 
 
 def edit(args):
-    user_config = fileUtils.load_config(config_path)
+    user_config = fileUtils.load_config(values.config_path)
     course_string_list = []
 
     available_courses = canvasUtils.get_available_courses_for_user()
@@ -31,7 +31,7 @@ def edit(args):
         }
     ]
 
-    answers = prompt(questions, style=style)
+    answers = prompt(questions, style=values.style)
     course_names = answers["courses"]
     user_course_ids = canvasUtils.get_course_ids_from_names(
         course_names, available_courses
@@ -40,7 +40,7 @@ def edit(args):
     fileUtils.make_directories_if_not_exist(course_names, user_config["directory"])
 
     user_config["courses"] = user_course_ids
-    fileUtils.save_to_config(user_config, config_path)
+    fileUtils.save_to_config(user_config, values.config_path)
 
     print("Courses updated. Current courses are:")
     canvasUtils.print_list(course_names)

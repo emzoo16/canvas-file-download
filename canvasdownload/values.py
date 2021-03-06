@@ -12,6 +12,8 @@ style = style_from_dict(
     }
 )
 
-config_path = os.path.expanduser("~") + "/canvas-config.yaml"
+config_path = os.path.expanduser("~") + "/.canvas/canvas-config.yaml"
+
+env_path = os.path.expanduser("~") + "/.canvas/.env-canvas"
 
 ignore_file_name = ".ignore-list"

@@ -1,13 +1,14 @@
-import canvasUtils
-import fileUtils
+from canvasdownload import canvasUtils
+from canvasdownload import fileUtils
 import os
 from colorama import Style, Fore
-from values import *
+from canvasdownload import values
+from PyInquirer import prompt
 
 
 def list_files(args):
     course_string_list = []
-    user_config = fileUtils.load_config(config_path)
+    user_config = fileUtils.load_config(values.config_path)
 
     available_courses = canvasUtils.get_available_courses_for_user(selected_only=True)
 
@@ -30,7 +31,7 @@ def list_files(args):
         }
     ]
 
-    answer = prompt(questions, style=style)
+    answer = prompt(questions, style=values.style)
     selected_courses = []
 
     if answer["courses"] == "View All":

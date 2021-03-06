@@ -1,7 +1,8 @@
-import fileUtils
+from canvasdownload import fileUtils
 import re
 import os
-from values import *
+from pprint import pprint
+from canvasdownload import values
 from colorama import Style
 from canvasapi import Canvas
 
@@ -10,7 +11,7 @@ def get_available_courses_for_user(selected_only=False):
     canvas = Canvas(os.environ.get("API_URL"), os.environ.get("API_KEY"))
 
     if selected_only == True:
-        user_config = fileUtils.load_config(config_path)
+        user_config = fileUtils.load_config(values.config_path)
 
     course_list = dict()
     courses = canvas.get_courses(enrollment_state="active", enrollment_type="student")

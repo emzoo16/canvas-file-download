@@ -1,6 +1,7 @@
 import os
 import yaml
-from values import *
+import re
+from canvasdownload import values
 
 
 def load_ignorelist(path):
@@ -11,6 +12,7 @@ def load_ignorelist(path):
             regex_list = f.readlines()
 
     regex_list = [line.strip() for line in regex_list]
+    regex_list = [re.escape(line) for line in regex_list]
     return regex_list
 
 
@@ -27,7 +29,7 @@ def load_config(file):
 
 
 def save_to_config(config_object, file):
-    file = open(config_path, "w")
+    file = open(values.config_path, "w")
     yaml.dump(config_object, file)
     file.close()
 
