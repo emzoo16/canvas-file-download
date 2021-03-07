@@ -41,8 +41,9 @@ def filter_files(file_dict, regex_ignore_list):
 
     for (file_name, file) in file_dict.items():
         ignored = False
-        for regex in regex_ignore_list:
-            if re.search(regex, file_name):
+
+        for regex_to_ignore in regex_ignore_list:
+            if re.search(regex_to_ignore, file_name):
                 ignored = True
 
         if ignored:

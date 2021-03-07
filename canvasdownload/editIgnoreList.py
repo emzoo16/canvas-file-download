@@ -69,18 +69,17 @@ def edit_ignore_list(args):
         answers = prompt(questions, style=values.style)
         selected_files = answers["files"]
 
-        with open(
-            download_directory + "/" + values.ignore_file_name, "a+"
-        ) as ignore_list_file:
-            for file in selected_files:
-                for line in ignore_list_file:
-                    if file in line:
-                        break
-                else:
-                    print("writing line")
+        if len(selected_files) > 0:
+            with open(
+                download_directory + "/" + values.ignore_file_name, "w"
+            ) as ignore_list_file:
+                for file in selected_files:
                     ignore_list_file.write(file + "\n")
-
-        print("\nThe following files added to ignore list")
-        canvasUtils.print_list(selected_files, Style.DIM, "+")
+            print("\nThe current ignored files are")
+            canvasUtils.print_list(selected_files, Style.DIM, "+")
+            print("\n")
+        else:
+            open(download_directory + "/" + values.ignore_file_name, "w").close()
+            print(Fore.GREEN + "\nIgnore list is currently empty\n" + Style.RESET_ALL)
     else:
         print(Fore.GREEN + "\nNo new files to ignore\n" + Style.RESET_ALL)

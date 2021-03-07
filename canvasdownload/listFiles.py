@@ -46,7 +46,10 @@ def list_files(args):
 
         files_in_directory = os.listdir(directory)
         files_from_canvas = course.get_files()
-        ignore_list = fileUtils.load_ignorelist(directory + "/.ignore-list")
+
+        ignore_list = fileUtils.load_ignorelist(
+            directory + "/" + values.ignore_file_name
+        )
 
         not_downloaded, already_downloaded, ignored = canvasUtils.get_status_for_files(
             files_from_canvas, files_in_directory, ignore_list
