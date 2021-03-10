@@ -32,6 +32,8 @@ Edit the current courses being tracked. Creates/deletes course directories depen
 Download files for a particular course. User selects from files on Canvas that have not been downloaded into the local directory.
 
 #### list-files
+<img src="https://github.com/emzoo16/canvas-file-download/blob/main/images/Screen%20Shot%202021-03-10%20at%201.01.54%20PM.png" alt="list files" width="500" height="300">
+
 View differences in files between local directory and the files on Canvas. Showing any new files on Canvas, already downloaded files, as well as files ignored for download.
 
 #### edit-ignorelist
