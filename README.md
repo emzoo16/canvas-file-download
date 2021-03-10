@@ -42,3 +42,11 @@ From the root directory run:
 ```
 pip install .
 ```
+Generate an API key following the steps [here](https://community.canvaslms.com/t5/Student-Guide/How-do-I-manage-API-access-tokens-as-a-student/ta-p/273)
+
+Create a `.canvas` folder in home directory and create a file `.canvas/.env-canvas` with the format:
+
+```
+API_URL=#URL to unversity's canvas
+API_KEY=#Key generated using method above
+```
